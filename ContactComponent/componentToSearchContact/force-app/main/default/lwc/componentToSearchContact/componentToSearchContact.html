@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Contact Details" icon-name="standard:contact">
+      <lightning-layout multiple-rows="true" vertical-align="end"><!-- layout with multiple rows and items aligned vertically to the bottom -->
+        
+         <lightning-layout-item size="5" padding="around-small"><!--a search input field -->     
+          <lightning-input  
+                  type="search"
+                  placeholder="Search..."
+                  value={contactSearch}
+                  onchange={handleSearchEvent}
+                  >
+          </lightning-input>
+       </lightning-layout-item>
+        
+       <lightning-layout-item padding="around-small"><!--  a button to add a new contact -->
+          <lightning-button
+                  label="Add New Contact"
+                  onclick={handleContactCreate}>
+          </lightning-button>
+        </lightning-layout-item>
+  
+        <lightning-layout-item >
+          <template if:true={displayTable}>
+            <lightning-datatable  key-field="Id"
+                        data={contactList.data}
+                        columns={columns}
+                        hide-checkbox-column="true"
+                        onrowaction={crudActions}>
+            </lightning-datatable><!-- a datatable to display contact records -->
+          </template>
+        </lightning-layout-item>
+      </lightning-layout>
+    </lightning-card>
+  </template>

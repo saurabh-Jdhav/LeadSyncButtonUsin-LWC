@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,
+flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,
+force:lightningQuickAction" access="global" controller="AuraContactComponent_vsController">
+    
+    <!-- variables -->
+    <aura:attribute name ="contacts" type="Contact[]" />
+    <aura:attribute name ="recordId" type="String" />
+    <aura:attribute name ="columns" type="List" />
+
+    <!-- Method for component initialiazation-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card title="Account Contacts">
+    <!-- Display datatable with contacts -->
+        <aura:if isTrue="{!v.contacts}">
+            <lightning:datatable data="{!v.contacts}" columns="{!v.columns}" keyField="Id" hideCheckboxColumn="true" />
+        </aura:if>
+    </lightning:card>
+</aura:component>
